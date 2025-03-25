@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-style: italic;
+}
+
+p {
+  color: red;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+.newBlog {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+form {
+}
+
+.form {
+  padding: 0.5rem;
+  border: 3px dashed blueviolet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  width: 100vh;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: rgb(192, 61, 61);
+  font-style: unset;
+  font-style: bold;
+  font-weight: 700;
+  text-decoration: solid;
+}

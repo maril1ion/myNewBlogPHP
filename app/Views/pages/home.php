@@ -1,0 +1,2 @@
+<h2>Hello, from Home!</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, optio. Repellat deserunt laboriosam eligendi molestias quis magnam, similique nulla repellendus dolore nisi neque. Eveniet culpa quia autem, aspernatur quidem nesciunt.</p>
