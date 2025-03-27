@@ -51,4 +51,32 @@ class Database implements DatabaseInterface
 
         return (int) $this->pdo->lastInsertId();
     }
+
+    public function first(string $table, array $cond = [])
+    {
+        // ('Имя таблицы', ['Имя столбца(name или nameAdmin) => значение(admin@ex.ru)'])
+        // Для сравнения, если такое значение есть, то true, если нет, то fals
+        $where = '';
+        if (count($cond) > 0) {
+            $values = implode('AND', array_map(fn ($field) => "$field = :$field", array_keys($cond)));
+            $where = 'WHERE '.$values;
+        }
+        $sql = "SELECT * FROM $table $where LIMIT 1";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($cond);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $result ?: null;
+    }
+
+    public function passwordHash(string $table, $password)
+    {
+        $sql = "SELECT $password FROM $table";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $result ?: null;
+
+    }
 }

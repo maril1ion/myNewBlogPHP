@@ -14,6 +14,8 @@ use core\Database\Database;
 use core\Database\DatabaseInterface;
 use core\Http\Request;
 use core\Http\RequestInterface;
+use core\LoginAdmin\LoginAdmin;
+use core\LoginAdmin\LoginAdminInterface;
 use core\Redirect\Redirect;
 use core\Redirect\RedirectInterface;
 use core\Router\Router;
@@ -33,19 +35,21 @@ trait Singleton
      */
     protected static ?self $instance = null;
 
-    private ViewInterface $view;
+    private readonly ViewInterface $view;
 
-    private RequestInterface $request;
+    private readonly RequestInterface $request;
 
-    private ValidateInterface $validate;
+    private readonly ValidateInterface $validate;
 
-    private RedirectInterface $redirect;
+    private readonly RedirectInterface $redirect;
 
-    private SessionsInterface $session;
+    private readonly SessionsInterface $session;
 
-    private ConfigDBInterface $config;
+    private readonly ConfigDBInterface $config;
 
-    private DatabaseInterface $database;
+    private readonly DatabaseInterface $database;
+
+    private readonly LoginAdminInterface $loginAdmin;
 
     private function __construct() {}
 
@@ -72,13 +76,15 @@ trait Singleton
         $this->view = new View;
         $this->config = new ConfigDB;
         $this->database = new Database($this->config);
+        $this->loginAdmin = new LoginAdmin($this->config, $this->database, $this->session);
         $router = new Router(
             $this->view,
             $this->request,
             $this->validate,
             $this->redirect,
             $this->session,
-            $this->database
+            $this->database,
+            $this->loginAdmin
         );
         $router->dispatch(Request::uri(), Request::method());
 

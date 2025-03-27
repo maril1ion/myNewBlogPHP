@@ -11,8 +11,23 @@
 </head>
 
 <body>
+  <div class="nav__container">
+    <div class="logo"><span>My_Blog 🗒</span></div>
 
-  <h1>Это тег <b>H1</b> взятый из layouts.php :)</h1>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__items"><a href="/home">Домашняя</a></li>
+        <li class="nav__items"><a href="/admin/blogs">Блог</a></li>
+        <li class="nav__items"><a href="/admin/blogs/add">Добавить блог</a></li>
+        <li class="nav__items"><a href="/login">Админ</a></li>
+      </ul>
+    </nav>
+    <div>
+      <span>Привет пользователь: name!</span>
+      <button>Выход</button>
+    </div>
+  </div>
+
   <?= $content ?>
   <footer>
     <h2>Какой-то footer и рабочий CSS</h2>

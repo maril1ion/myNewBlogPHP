@@ -5,6 +5,7 @@ namespace core\Controller;
 use core\Database\DatabaseInterface;
 use core\Http\Request;
 use core\Http\RequestInterface;
+use core\LoginAdmin\LoginAdminInterface;
 use core\Redirect\Redirect;
 use core\Redirect\RedirectInterface;
 use core\Sessions\Session;
@@ -21,11 +22,11 @@ abstract class Controller
 
     private ValidateInterface $validate;
 
-    private RedirectInterface $redirect;
-
     private SessionsInterface $session;
 
     private DatabaseInterface $database;
+
+    private LoginAdminInterface $loginAdmin;
 
     // VIEW ****
     public function view(
@@ -126,5 +127,16 @@ abstract class Controller
     public function setDB(DatabaseInterface $database)
     {
         $this->database = $database;
+    }
+
+    // AUTH ****
+    public function login()
+    {
+        return $this->loginAdmin;
+    }
+
+    public function setLogin(LoginAdminInterface $loginAdmin)
+    {
+        $this->loginAdmin = $loginAdmin;
     }
 }

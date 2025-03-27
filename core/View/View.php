@@ -2,10 +2,15 @@
 
 namespace core\View;
 
+use core\LoginAdmin\LoginAdminInterface;
+use core\Sessions\SessionsInterface;
+
 // use core\Sessions\Session;
 
 class View implements ViewInterface
 {
+    public function __construct(private SessionsInterface $session, private LoginAdminInterface $login) {}
+
     public function page(string $namePage, string $nameTitle, string $nameLayouts, array $setSessionErrors = [])
     {
         // include_once PAGES . "/{$namePage}" . '.php';
@@ -37,5 +42,15 @@ class View implements ViewInterface
 
             return ob_get_clean();
         }
+    }
+
+    private function defaultData(): array
+    {
+        return [
+            'view' => $this,
+            'session' => $this->session,
+            'login' => $this->login,
+            'complete' => 'Выполнено',
+        ];
     }
 }

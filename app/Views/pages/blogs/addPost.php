@@ -1,5 +1,5 @@
 <h1 class="newBlog">Добавить новый блог</h1>
-<form action="/blogs/add" method="post">
+<form action="/admin/blogs/add" method="post">
   <div class="form">
     <div>
       <label for="input">Имя поста:</label>
@@ -10,18 +10,18 @@
       <div class="error">
 
 
-        <?php if (empty($getSessionErrors)) : ?>
+        <?php if (empty($getSessionErrors)) { ?>
           <span><?= $complete ?></span>
-        <?php else:  ?>
-          <?php foreach ($getSessionErrors as $errors) : ?>
+        <?php } else {  ?>
+          <?php foreach ($getSessionErrors as $errors) { ?>
             <span>Errors:</span>
             <ul>
               <li>
                 <?= $errors ?>
               </li>
             </ul>
-          <?php endforeach; ?>
-        <?php endif; ?>
+          <?php } ?>
+        <?php } ?>
       </div>
 
     </div>

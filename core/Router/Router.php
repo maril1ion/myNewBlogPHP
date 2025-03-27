@@ -5,6 +5,7 @@ namespace core\Router;
 use core\Controller\Controller;
 use core\Database\DatabaseInterface;
 use core\Http\RequestInterface;
+use core\LoginAdmin\LoginAdminInterface;
 use core\Redirect\RedirectInterface;
 use core\Sessions\SessionsInterface;
 use core\Validator\ValidateInterface;
@@ -23,7 +24,8 @@ class Router implements RouterInterface
         private ValidateInterface $validate,
         private RedirectInterface $redirect,
         private SessionsInterface $session,
-        private DatabaseInterface $database
+        private DatabaseInterface $database,
+        private LoginAdminInterface $loginAdmin
     ) {
         $this->initRoutes();
     }
@@ -49,6 +51,7 @@ class Router implements RouterInterface
             call_user_func([$controller, 'setReditect'], $this->redirect);
             call_user_func([$controller, 'setSessionClass'], $this->session);
             call_user_func([$controller, 'setDB'], $this->database);
+            call_user_func([$controller, 'setLogin'], $this->loginAdmin);
 
             call_user_func([$controller, $action]);
             //            $controller = new $action();
