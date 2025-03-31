@@ -10,28 +10,30 @@
   <title><?= $title ?></title>
 </head>
 
-<body>
-  <div class="nav__container">
-    <div class="logo"><span>My_Blog 🗒</span></div>
+<div class="nav__container">
+  <div class="logo"><span>My_Blog 🗒</span></div>
 
-    <nav class="nav">
-      <ul class="nav__list">
-        <li class="nav__items"><a href="/home">Домашняя</a></li>
-        <li class="nav__items"><a href="/admin/blogs">Блог</a></li>
-        <li class="nav__items"><a href="/admin/blogs/add">Добавить блог</a></li>
-        <li class="nav__items"><a href="/login">Админ</a></li>
-      </ul>
-    </nav>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__items"><a href="/home">Домашняя</a></li>
+      <li class="nav__items"><a href="/admin/blogs">Блог</a></li>
+      <li class="nav__items"><a href="/admin/blogs/add">Добавить блог</a></li>
+      <li class="nav__items"><a href="/login">Админ</a></li>
+    </ul>
+  </nav>
+  <?php if ($login->check()) { ?>
     <div>
-      <span>Привет пользователь: name!</span>
-      <button>Выход</button>
+      <span>Привет пользователь: <?php echo $session->getSession("admin_id")["login"] ?? 'name'; ?></span>
+      <form action="/logout" method="post">
+        <button type="submit">Выход</button>
+      </form>
     </div>
-  </div>
-
-  <?= $content ?>
-  <footer>
-    <h2>Какой-то footer и рабочий CSS</h2>
-  </footer>
+  <?php } ?>
+</div>
+<?= $content ?>
+<footer>
+  <h2>Какой-то footer и рабочий CSS</h2>
+</footer>
 </body>
 
 </html>

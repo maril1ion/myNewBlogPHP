@@ -30,6 +30,6 @@ class BlogsController extends Controller
         // первый аргумент: название таблицы
         // второй аргумент: ['название колонки' => 'значение из инпута, которое необходимо занести']
         $id = $this->db()->insert('blog_db', ['text' => $this->getInputName('nameBlog')]);
-        $this->redirect('/admin/blogs/add');
+        $this->redirect('/home');
     }
 }

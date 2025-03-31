@@ -6,6 +6,7 @@ use core\Controller\Controller;
 use core\Database\DatabaseInterface;
 use core\Http\RequestInterface;
 use core\LoginAdmin\LoginAdminInterface;
+use core\Middleware\AbstractMiddleware;
 use core\Redirect\RedirectInterface;
 use core\Sessions\SessionsInterface;
 use core\Validator\ValidateInterface;
@@ -37,6 +38,16 @@ class Router implements RouterInterface
         if (! $route) {
             $this->notFound();
         }
+
+        if ($route->hasMiddlewares()) {
+            foreach ($route->getMiddlewares() as $middleware) {
+                /** @var AbstractMiddleware $middleware */
+                $middleware = new $middleware($this->request, $this->loginAdmin, $this->redirect);
+
+                $middleware->handle();
+            }
+        }
+
         if (is_array($route->getAction())) {
             [$controller, $action] = $route->getAction();
             // $controller =$route->getAction()[0];
@@ -89,6 +100,6 @@ class Router implements RouterInterface
 
     private function getRoutes()
     {
-        return require_once CONFIG.'/routes.php';
+        return require_once CONFIG . '/routes.php';
     }
 }

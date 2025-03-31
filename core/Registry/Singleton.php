@@ -73,10 +73,10 @@ trait Singleton
         $this->validate = new Validate;
         $this->redirect = new Redirect;
         $this->session = new Session;
-        $this->view = new View;
         $this->config = new ConfigDB;
         $this->database = new Database($this->config);
-        $this->loginAdmin = new LoginAdmin($this->config, $this->database, $this->session);
+        $this->loginAdmin = new LoginAdmin($this->config, $this->database, $this->session, $this->redirect);
+        $this->view = new View($this->session, $this->loginAdmin);
         $router = new Router(
             $this->view,
             $this->request,

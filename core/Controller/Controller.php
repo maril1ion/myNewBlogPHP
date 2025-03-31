@@ -34,11 +34,7 @@ abstract class Controller
         $nameTitle = 'Мой личный блог',
         string $nameLayouts = 'default'
     ) {
-        $setSessionErrors = $this->session()->getSessionFlash('errors');
-        if ($setSessionErrors == null) {
-            $setSessionErrors = [];
-        }
-        echo $this->view->page($namePage, $nameTitle, $nameLayouts, $setSessionErrors);
+        echo $this->view->page($namePage, $nameTitle, $nameLayouts);
     }
 
     public function setView(ViewInterface $view): void

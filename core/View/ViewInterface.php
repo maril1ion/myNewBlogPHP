@@ -4,5 +4,5 @@ namespace core\View;
 
 interface ViewInterface
 {
-    public function page(string $namePage, string $nameTitle, string $nameLayouts, array $setSessionErrors = []);
+    public function page(string $namePage, string $nameTitle, string $nameLayouts);
 }

@@ -11,17 +11,19 @@ class View implements ViewInterface
 {
     public function __construct(private SessionsInterface $session, private LoginAdminInterface $login) {}
 
-    public function page(string $namePage, string $nameTitle, string $nameLayouts, array $setSessionErrors = [])
+    public function page(string $namePage, string $nameTitle, string $nameLayouts)
     {
         // include_once PAGES . "/{$namePage}" . '.php';
-        return $this->renderLayouts($nameTitle, $nameLayouts, $this->renderView($namePage, $setSessionErrors));
+        return $this->renderLayouts($nameTitle, $nameLayouts, $this->renderView($namePage));
     }
 
     private function renderLayouts(string $nameTitle, string $nameLayouts, $content)
     {
-        $pathLayouts = LAYOUT."/{$nameLayouts}".'.php';
+        $pathLayouts = LAYOUT . "/{$nameLayouts}" . '.php';
         if (file_exists($pathLayouts)) {
             ob_start();
+
+            extract($this->defaultData());
             $title = $nameTitle;
             include_once $pathLayouts;
 
@@ -29,14 +31,13 @@ class View implements ViewInterface
         }
     }
 
-    private function renderView($namePage, array $setSessionErrors)
+    private function renderView($namePage)
     {
-        $pathPages = PAGES."/{$namePage}".'.php';
+        $pathPages = PAGES . "/{$namePage}" . '.php';
         if (file_exists($pathPages)) {
             ob_start();
 
-            $array = ['getSessionErrors' => $setSessionErrors, 'complete' => 'Выполнено!'];
-            extract($array);
+            extract($this->defaultData());
 
             include_once $pathPages;
 

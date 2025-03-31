@@ -1,0 +1,26 @@
+/* blocks(style) */
+@import "./blocks/bg";
+
+/* bootstrap(node_modules) */
+@import "./../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+/* base */
+@import "./base/base";
+@import "./base/variables";
+
+/* blocks */
+@import "./blocks/button-mobile-nav";
+@import "./blocks/header";
+@import "./blocks/section__avatar";
+@import "./blocks/section__about-me";
+@import "./blocks/section__contact";
+@import "./blocks/section__my-jobs";
+@import "./blocks/footer";
+
+/* media */
+@import "./media/media";

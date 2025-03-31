@@ -4,6 +4,7 @@ namespace core\LoginAdmin;
 
 use core\Config\ConfigDBInterface;
 use core\Database\DatabaseInterface;
+use core\Redirect\RedirectInterface;
 use core\Sessions\SessionsInterface;
 
 class LoginAdmin implements LoginAdminInterface
@@ -14,20 +15,13 @@ class LoginAdmin implements LoginAdminInterface
     {
         $admin = $this->db->first($this->getTable(), [$this->getName() => $login]);
         if (! $admin) {
-            dump('Таблица или логин не верны!');
-
             return false;
         }
 
-        $passwrodDB = $this->db->passwordHash($this->getTable(), $this->getPassword());
-        $passwrodDB = $passwrodDB[array_key_first($passwrodDB)];
         if (! password_verify($password, $admin[$this->getPassword()])) {
-
-            dump('Пароль не верен!');
-
             return false;
         }
-        $this->session->setSession('admin_id', $admin['id']);
+        $this->session->setSession('admin_id', $admin);
 
         return true;
     }

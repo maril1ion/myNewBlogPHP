@@ -6,21 +6,27 @@
       <input id="input" type="text" name='nameBlog'>
     </div>
     <div>
-      <input type="submit" value="Отправить">
+      <input type="submit" value="Отправить" name = 'sendPostr'>
       <div class="error">
 
-
-        <?php if (empty($getSessionErrors)) { ?>
+<!--         return [
+            'view' => $this,
+            'session' => $this->session,
+            'login' => $this->login,
+            'complete' => 'Выполнено',
+        ];
+ -->
+       <?php if (empty($session->getSession('errors'))) { ?>
           <span><?= $complete ?></span>
-        <?php } else {  ?>
-          <?php foreach ($getSessionErrors as $errors) { ?>
+        <?php } else { ?>
+          <?php foreach ($session->getSessionFlash('errors') as $errors) { ?>
             <span>Errors:</span>
             <ul>
               <li>
                 <?= $errors ?>
               </li>
             </ul>
-          <?php } ?>
+          <?php }?>
         <?php } ?>
       </div>
 
