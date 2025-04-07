@@ -1,2 +1,17 @@
-<h2>Hello, from Home!</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, optio. Repellat deserunt laboriosam eligendi molestias quis magnam, similique nulla repellendus dolore nisi neque. Eveniet culpa quia autem, aspernatur quidem nesciunt.</p>
+<section>
+  <div class = "container mx-auto rounded-2xl w-full px-2 my-5 bg-[#a6dac3]">
+    <h1 class = "text-4xl text-center py-5">Добро пожаловать на мой блог</h1>
+    <div class = "border border-solid border-[#f5e5c4]"></div>
+    <div class = "text-2xl leading-10 p-3">
+      <p>Привет! Вы попали на мой блог, где вы сможете проследить развитие моих навыков.</p>
+      <p>Здесь вы сможете увидеть над чем я работаю в данным момент, как я живу, а также мои хобби.
+      </p>
+      <p> Данный проект создавался исключительно для себя. Я хочу наблюдать над развитием своей жизни со стороны, выкладывать посты о том, что у меня происходит в жизни в данный момент, и как состоят дела с моими хобби.
+      </p>
+    </div>
+    <div class = "border border-solid border-[#f5e5c4]"></div>
+    <div class = "py-3 text-2xl font-bold text-[#b11e4d] text-center underline">
+      <p>Это приветственное сообщение адресованно самому себе. Я хочу развивать данный проект и вести виртаульный личный дневник и ежедневник</p>
+    </div>
+  </div>
+</section>

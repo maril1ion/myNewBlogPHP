@@ -76,7 +76,7 @@ trait Singleton
         $this->config = new ConfigDB;
         $this->database = new Database($this->config);
         $this->loginAdmin = new LoginAdmin($this->config, $this->database, $this->session, $this->redirect);
-        $this->view = new View($this->session, $this->loginAdmin);
+        $this->view = new View($this->session, $this->loginAdmin, $this->request);
         $router = new Router(
             $this->view,
             $this->request,

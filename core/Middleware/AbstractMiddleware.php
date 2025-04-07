@@ -8,10 +8,11 @@ use core\Redirect\RedirectInterface;
 
 abstract class AbstractMiddleware
 {
-  public function __construct(
-    protected RequestInterface $request,
-    protected LoginAdminInterface $login,
-    protected RedirectInterface $redirect
-  ) {}
-  abstract public function handle(): void;
+    public function __construct(
+        protected RequestInterface $request,
+        protected LoginAdminInterface $login,
+        protected RedirectInterface $redirect
+    ) {}
+
+    abstract public function handle(): void;
 }

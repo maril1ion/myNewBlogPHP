@@ -4,7 +4,6 @@ namespace core\LoginAdmin;
 
 use core\Config\ConfigDBInterface;
 use core\Database\DatabaseInterface;
-use core\Redirect\RedirectInterface;
 use core\Sessions\SessionsInterface;
 
 class LoginAdmin implements LoginAdminInterface
@@ -21,6 +20,7 @@ class LoginAdmin implements LoginAdminInterface
         if (! password_verify($password, $admin[$this->getPassword()])) {
             return false;
         }
+
         $this->session->setSession('admin_id', $admin);
 
         return true;
@@ -29,6 +29,11 @@ class LoginAdmin implements LoginAdminInterface
     public function check(): bool
     {
         return $this->session->hasSession('admin_id');
+    }
+
+    public function checkLogin()
+    {
+        return $this->session->getSessionFlash('loginFalse');
     }
 
     public function logout(): void

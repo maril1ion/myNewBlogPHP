@@ -2,6 +2,7 @@
 
 namespace core\View;
 
+use core\Http\RequestInterface;
 use core\LoginAdmin\LoginAdminInterface;
 use core\Sessions\SessionsInterface;
 
@@ -9,7 +10,7 @@ use core\Sessions\SessionsInterface;
 
 class View implements ViewInterface
 {
-    public function __construct(private SessionsInterface $session, private LoginAdminInterface $login) {}
+    public function __construct(private SessionsInterface $session, private LoginAdminInterface $login, private RequestInterface $request) {}
 
     public function page(string $namePage, string $nameTitle, string $nameLayouts)
     {
@@ -19,7 +20,7 @@ class View implements ViewInterface
 
     private function renderLayouts(string $nameTitle, string $nameLayouts, $content)
     {
-        $pathLayouts = LAYOUT . "/{$nameLayouts}" . '.php';
+        $pathLayouts = LAYOUT."/{$nameLayouts}".'.php';
         if (file_exists($pathLayouts)) {
             ob_start();
 
@@ -33,7 +34,7 @@ class View implements ViewInterface
 
     private function renderView($namePage)
     {
-        $pathPages = PAGES . "/{$namePage}" . '.php';
+        $pathPages = PAGES."/{$namePage}".'.php';
         if (file_exists($pathPages)) {
             ob_start();
 
@@ -45,12 +46,25 @@ class View implements ViewInterface
         }
     }
 
+    public function header()
+    {
+
+        extract($this->defaultData());
+        if ($this->request::uri() == false) {
+
+            require_once LAYOUT.'/headerMain.php';
+        } else {
+            require_once LAYOUT.'/headerBlog.php';
+        }
+    }
+
     private function defaultData(): array
     {
         return [
             'view' => $this,
             'session' => $this->session,
             'login' => $this->login,
+            'request' => $this->request,
             'complete' => 'Выполнено',
         ];
     }

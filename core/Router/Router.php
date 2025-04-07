@@ -36,6 +36,7 @@ class Router implements RouterInterface
         // В массивы GET и POST записываем соответствующие методы получаем в массивах 'GET' и 'POST' и извлекаем из этих массивов в классе dispatch
         $route = $this->findRoutes($uri, $method);
         if (! $route) {
+
             $this->notFound();
         }
 
@@ -100,6 +101,6 @@ class Router implements RouterInterface
 
     private function getRoutes()
     {
-        return require_once CONFIG . '/routes.php';
+        return require_once CONFIG.'/routes.php';
     }
 }

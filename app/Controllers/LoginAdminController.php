@@ -3,7 +3,6 @@
 namespace app\Controllers;
 
 use core\Controller\Controller;
-use function core\Controller\redirect;
 
 class LoginAdminController extends Controller
 {
@@ -14,19 +13,20 @@ class LoginAdminController extends Controller
 
     public function loginAdmin()
     {
-        $login = $this->getInputName('adminLogin');
+        $loginAdmin = $this->getInputName('adminLogin');
         $password = $this->getInputName('adminPassword');
-        $login = $this->login()->login($login, $password);
-        if (!$login) {
-            $this->redirect('/login');
+        $login = $this->login()->login($loginAdmin, $password);
+        if (! $login) {
+
+            $this->session()->setSession('loginFalse', '<div class = "border-2 border-[#b11e4d] rounded-full flex items-center justify-center p-3 w-10  h-10"><span class = "font-bold">ℹ</span></div> Ошибка! Данные введены неверно!');
+            $this->redirect('/blog/login');
         }
-        $this->redirect('/home');
+        $this->redirect('/blog/home');
     }
 
     public function logout()
     {
-
         $this->login()->logout();
-        $this->redirect("/login");
+        $this->redirect('/blog/login');
     }
 }

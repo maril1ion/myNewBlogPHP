@@ -42,12 +42,14 @@ class Validate implements ValidateInterface
         switch ($ruleName) {
             case 'required':
                 if (empty($value)) {
-                    return 'Ошибка, поле является обязательным для заполнения! ';
+
+                    return '<div class = "border-2 border-[#b11e4d] rounded-full flex items-center justify-center p-3 w-10  h-10"><span class = "font-bold">ℹ</span></div>Ошибка, поле является обязательным для заполнения! ';
                 }
                 break;
             case 'min':
                 if (strlen($value) < $ruleValue) {
-                    return "Ошибка, имя | {$value} | должно быть больше {$ruleValue}";
+
+                    return '<div class = "border-2 border-[#b11e4d] rounded-full flex items-center justify-center p-3 w-10  h-10"><span class = "font-bold">ℹ</span></div> Ошибка, имя | '.$value.'| должно быть больше '.$ruleValue;
                 }
                 break;
             case 'max':

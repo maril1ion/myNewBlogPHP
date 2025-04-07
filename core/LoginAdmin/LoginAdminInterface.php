@@ -14,5 +14,7 @@ interface LoginAdminInterface
 
     public function getPassword(): string;
 
+    public function checkLogin();
+
     public function check(): bool;
 }
